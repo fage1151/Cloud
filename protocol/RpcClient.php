@@ -54,16 +54,16 @@ class RpcClient
         if (isset($response->errNum) && $response->errNum != 0) {
             switch ($response->errNum) {
                 case 1:
-                    throw new UnauthorizedException($response->retMsg);
+                    throw new UnauthorizedException($response->errMsg);
                     break;
                 case 2:
-                    throw new InvalidTimestampException($response->retMsg);
+                    throw new InvalidTimestampException($response->errMsg);
                     break;
                 case 3:
-                    throw new ValidationFailedException($response->retMsg);
+                    throw new ValidationFailedException($response->errMsg);
                     break;
                 default:
-                    throw new BusinessException($response->retMsg);
+                    throw new BusinessException($response->errMsg);
             }
         }
 
