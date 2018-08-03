@@ -67,7 +67,7 @@ class RpcClient
             }
         }
 
-        return $response->result;
+        return $response;
     }
 
     private function post($url, $data)

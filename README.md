@@ -1,4 +1,10 @@
-<?php
+# 中午云PHP SDK
+## 安装　＆　install
+```
+composer require zhongwu/printer
+```
+## 示例
+```php
 
 $app_id = '******';
 
@@ -16,8 +22,9 @@ $printdata = '中午云拥有自主研发的云打印机，提供稳定高效，
 
 try {
 
-    $Zprinter->set_args($device_id, $device_secret)->cloud_print($printdata);
-
+    $Zprinter->set_args($device_id, $device_secret)->print($printdata);
+    
 } catch (Exception $e) {
 
 }
+```

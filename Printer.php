@@ -33,7 +33,7 @@ class Printer
      * @throws \Exception
      * @throws exceptions\BusinessException
      */
-    public function print($printdata)
+    public function cloud_print($printdata)
     {
         if (strlen($printdata) > 6000) {
 
@@ -61,15 +61,23 @@ class Printer
      */
     public function set_logo($image)
     {
-        $imagedata = file_get_contents($image);
+        $logodata = '';
 
-        if (strlen($imagedata) > 40 * 1024) {
-            return false;
+        if (!empty($image)) {
+
+            $imagedata = file_get_contents($image);
+
+            if (strlen($imagedata) > 40 * 1024) {
+
+                return false;
+
+            }
+
+            $logodata = base64_encode($imagedata);
         }
 
-        $logodata = base64_encode($imagedata);
 
-        return $this->client->call('logo', $logodata);
+        return $this->client->call('logo', array('logodata' => $logodata));
     }
 
     /**
@@ -81,18 +89,19 @@ class Printer
      */
     public function set_sound($sound)
     {
-        return $this->client->call('sound', $sound);
+        return $this->client->call('sound', array('sound' => $sound));
     }
 
     /**
      * @desc
+     * @param int $id
      * @return mixed
      * @throws \Exception
      * @throws exceptions\BusinessException
      */
-    public function get_print_status()
+    public function get_print_status($id)
     {
-        return $this->client->call('printstatus');
+        return $this->client->call('printstatus', array('dataid' => $id));
     }
 
     /**
