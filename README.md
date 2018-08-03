@@ -1,5 +1,5 @@
 # 中午云PHP SDK
-## 安装　＆　install
+## 安装＆install
 ```
 composer require zhongwu/printer
 ```
@@ -30,7 +30,7 @@ try {
 }
 ```
 * 设置声音
-```
+```php
 <?php
 
 $app_id = '******';
