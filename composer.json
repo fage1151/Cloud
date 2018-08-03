@@ -8,7 +8,6 @@
     "cloudprint"
   ],
   "homepage": "http://wiki.zhongwuyun.com/",
-  "type": "project",
   "license": "MIT",
   "minimum-stability": "stable",
   "require": {
