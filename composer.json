@@ -10,7 +10,8 @@
   "homepage": "http://wiki.zhongwuyun.com/",
   "license": "MIT",
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=5.4.0",
+    "zhongwu/printer": "^1.0"
   },
   "autoload": {
     "psr-4": {
