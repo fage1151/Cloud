@@ -1,0 +1,22 @@
+{
+  "name": "zhongwu/printer",
+  "description": "zhongwu cloud printer api",
+  "keywords": [
+    "zhongwu",
+    "printer",
+    "esc/pos",
+    "cloudprint"
+  ],
+  "homepage": "http://wiki.zhongwuyun.com/",
+  "type": "project",
+  "license": "MIT-lisence",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "zhongwu\\": "./"
+    }
+  }
+}
