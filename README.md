@@ -23,7 +23,7 @@ $printdata = '中午云拥有自主研发的云打印机，提供稳定高效，
 
 try {
 
-    $Zprinter->set_args($device_id, $device_secret)->print($printdata);
+    $Zprinter->set_args($device_id, $device_secret)->cloud_print($printdata);
     
 } catch (Exception $e) {
 
