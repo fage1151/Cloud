@@ -4,7 +4,7 @@
   "keywords": [
     "zhongwu",
     "printer",
-    "esc/pos",
+    "esc\\pos",
     "cloudprint"
   ],
   "homepage": "http://wiki.zhongwuyun.com/",
