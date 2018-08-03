@@ -15,7 +15,7 @@ class RpcClient
     private $app_secret;
     private $remote_url;
 
-    public function __construct($app_id, $app_secret, $remote_url)
+    public function __construct($app_id, $app_secret, $remote_url = 'http://api.zhongwuyun.com')
     {
         if (is_null($app_id)
             || is_null($app_secret)
