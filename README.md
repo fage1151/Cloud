@@ -4,6 +4,7 @@
 composer require zhongwu/printer
 ```
 ## 示例
+* 打印
 ```php
 
 $app_id = '******';
@@ -24,6 +25,30 @@ try {
 
     $Zprinter->set_args($device_id, $device_secret)->print($printdata);
     
+} catch (Exception $e) {
+
+}
+```
+* 设置声音
+```
+<?php
+
+$app_id = '******';
+
+$app_secret = '********';
+
+$rpc = new \zhongwu\protocol\RpcClient($app_id, $app_secret, 'http://api.zhongwuyun.com');
+
+$Zprinter = new \zhongwu\Printer($rpc);
+
+$device_id = '1111111';
+
+$device_secret = '11111111';
+
+try {
+
+    $Zprinter->set_args($device_id, $device_secret)->set_sound(1);
+
 } catch (Exception $e) {
 
 }
