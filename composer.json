@@ -9,7 +9,7 @@
   ],
   "homepage": "http://wiki.zhongwuyun.com/",
   "type": "project",
-  "license": "MIT License",
+  "license": "MIT license",
   "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0"
