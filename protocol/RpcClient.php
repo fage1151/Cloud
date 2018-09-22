@@ -41,11 +41,10 @@ class RpcClient
     {
         $protocol = array_merge(array(
             "appid" => $this->app_id,
-            'appsecret' => $this->app_secret,
             "timestamp" => time(),
         ), $parameters);
 
-        $protocol['sign'] = $this->generate_signature();
+        $protocol['sign'] = $this->generate_signature($protocol);
 
         $result = $this->post($this->remote_url . "/" . $action, $protocol);
         $response = json_decode($result);
@@ -72,13 +71,13 @@ class RpcClient
         return $response;
     }
 
-    private function generate_signature()
+    private function generate_signature($protocol)
     {
         $stringtoSigned = '';
 
-        ksort($param);
+        ksort($protocol);
 
-        foreach ($param as $k => $v) {
+        foreach ($protocol as $k => $v) {
 
             $stringtoSigned .= $k . $v;
 
