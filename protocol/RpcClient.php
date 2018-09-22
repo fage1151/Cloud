@@ -45,6 +45,8 @@ class RpcClient
             "timestamp" => time(),
         ), $parameters);
 
+        $protocol['sign'] = $this->generate_signature();
+
         $result = $this->post($this->remote_url . "/" . $action, $protocol);
         $response = json_decode($result);
         if (is_null($response)) {
@@ -68,6 +70,23 @@ class RpcClient
         }
 
         return $response;
+    }
+
+    private function generate_signature()
+    {
+        $stringtoSigned = '';
+
+        ksort($param);
+
+        foreach ($param as $k => $v) {
+
+            $stringtoSigned .= $k . $v;
+
+        }
+
+        $stringtoSigned .= $this->app_secret;
+
+        return md5($stringtoSigned);
     }
 
     private function post($url, $data)
