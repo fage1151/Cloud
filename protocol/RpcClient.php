@@ -30,14 +30,17 @@ class RpcClient
         $this->remote_url = $remote_url;
     }
 
-    /** call server api with nop
+    /**
+     * @desc
      * @param       $action
      * @param array $parameters
+     * @param       $method
      * @return mixed
      * @throws BusinessException
      * @throws Exception
+     * @throws InvalidTimestampException
      */
-    public function call($action, array $parameters = array())
+    public function call($action, array $parameters = array(), $method = 'post')
     {
         $protocol = array_merge(array(
             "appid" => $this->app_id,
@@ -46,7 +49,13 @@ class RpcClient
 
         $protocol['sign'] = $this->generate_signature($protocol);
 
-        $result = $this->post($this->remote_url . "/" . $action, $protocol);
+        if ($method == 'post') {
+            $result = $this->post($this->remote_url . "/" . $action, $protocol);
+
+        } else {
+            $result = $this->get($this->remote_url . "/" . $action, $protocol);
+
+        }
         $response = json_decode($result);
         if (is_null($response)) {
             throw new Exception("invalid response.");
@@ -79,7 +88,9 @@ class RpcClient
 
         foreach ($protocol as $k => $v) {
 
-            $stringtoSigned .= $k . $v;
+            if (strlen($v) > 0) {
+                $stringtoSigned .= $k . $v;
+            }
 
         }
 
@@ -95,6 +106,24 @@ class RpcClient
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            throw new Exception(curl_error($ch));
+        }
+
+        return $response;
+    }
+
+    private function get($url, $data)
+    {
+        if (strpos($url, "?") === false) {
+            $url = $url . '?' . http_build_query($data);
+        } else {
+            $url = $url . http_build_query($data);
+        }
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         $response = curl_exec($ch);
         if (curl_errno($ch)) {

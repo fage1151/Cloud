@@ -45,7 +45,7 @@ class Printer
             return false;
 
         }
-        return $this->client->call('', array_merge(array('printdata' => $printdata),$this->get_device()));
+        return $this->client->call('', array_merge(array('printdata' => $printdata), $this->get_device()));
     }
 
     /**
@@ -55,7 +55,7 @@ class Printer
      */
     public function get_status()
     {
-        return $this->client->call('status',$this->get_device());
+        return $this->client->call('status', $this->get_device(), 'get');
     }
 
     /**
@@ -82,7 +82,7 @@ class Printer
         }
 
 
-        return $this->client->call('logo', array_merge(array('logodata' => $logodata),$this->get_device()));
+        return $this->client->call('logo', array_merge(array('logodata' => $logodata), $this->get_device()));
     }
 
     /**
@@ -94,7 +94,7 @@ class Printer
      */
     public function set_sound($sound)
     {
-        return $this->client->call('sound', array_merge(array('sound' => $sound),$this->get_device()));
+        return $this->client->call('sound', array_merge(array('sound' => $sound), $this->get_device()));
     }
 
     /**
@@ -106,7 +106,7 @@ class Printer
      */
     public function get_print_status($id)
     {
-        return $this->client->call('printstatus', array_merge(array('dataid' => $id),$this->get_device()));
+        return $this->client->call('printstatus', array_merge(array('dataid' => $id), $this->get_device()), 'get');
     }
 
     /**
@@ -117,6 +117,6 @@ class Printer
      */
     public function empty_print_queue()
     {
-        return $this->client->call('emptyprintqueue',$this->get_device());
+        return $this->client->call('emptyprintqueue', $this->get_device());
     }
 }

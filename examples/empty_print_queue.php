@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__."/../../vendor/autoload.php";
+require_once __DIR__."/../vendor/autoload.php";
 
 $app_id = '8000000';
 
-$app_secret = '********';
+$app_secret = '*************';
 
 $device_id = '123457';
 
@@ -17,7 +17,7 @@ $Zprinter = new \zhongwu\Printer($rpc);
 
 try {
 
-    $Zprinter->set_args($device_id, $device_secret)->empty_print_queue();
+    var_dump($Zprinter->set_args($device_id, $device_secret)->empty_print_queue());
 
 } catch (Exception $e) {
 

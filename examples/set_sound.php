@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__."/../../vendor/autoload.php";
+require_once __DIR__."/../vendor/autoload.php";
 
 $app_id = '8000000';
 
@@ -17,7 +17,9 @@ $Zprinter = new \zhongwu\Printer($rpc);
 
 try {
 
-    $Zprinter->set_args($device_id, $device_secret)->set_sound(1);
+    $rs = $Zprinter->set_args($device_id, $device_secret)->set_sound(1);
+
+    var_dump($rs);
 
 } catch (Exception $e) {
 
